@@ -3,7 +3,8 @@ SuperManager - Frontend part (Under Development) - v1.0.0
 
 ## Overview
 
-![Super Manager Logo](docs/images/logo.png)
+![Super Manager Logo](docs/images/sm_logo.png)
+
 SuperManager is an IT management system designed to streamline and optimize your organization's technology operations.
 
 **Super Manager - Frontend** is the web interface for managing IT infrastructure, built with modern technologies for a fast and responsive user experience. It connects seamlessly to the backend API to provide tools for device inventory, software deployment, reporting, supply stock control, calendar management, user administration, and notifications.
