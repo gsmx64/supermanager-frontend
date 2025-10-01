@@ -1,0 +1,47 @@
+.notifications-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.notifications-container-inner {
+  flex: 1 1 320px;
+  min-width: 260px;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.notifications-container-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  font-size: 1.5rem;
+  color: #eee;
+}
+
+.notifications-container-counter {
+  padding: 0.25rem 0.75rem;
+  color: #fff;
+  background: #0078d4;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.notifications-container-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .notifications-container {
+    margin: 0 auto;
+  }
+}

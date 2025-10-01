@@ -1,0 +1,14 @@
+.react-router/
+build/
+node_modules/
+README.md
+LICENSE
+/docs
+.git
+.gitignore
+*.cmd
+*.sh
+.env.development
+*.sample
+Dockerfile*
+docker-compose*.yml

@@ -1,0 +1,45 @@
+FROM node:22.20-alpine AS build-phase
+
+ENV NODE_ENV=production
+ENV VITE_APP_NAME=SuperManager
+ENV VITE_APP_PORT=3000
+ENV VITE_API_URL=supermanager-backend:8000/api/v1
+ENV VITE_API_TIMEOUT=5000
+ENV VITE_STORAGE_URL=supermanager-backend:8000
+ENV VITE_CORS_ORIGIN=*
+ENV VITE_CORS_WITH_CREDS=true
+ENV VITE_CORS_WITH_XSRF_TOKE=true
+ENV VITE_TOAST_TIMEOUT=3500
+
+WORKDIR /app-build
+
+COPY ./ /
+
+RUN cd /app-build
+
+RUN npm i -g npm@latest
+RUN npm i
+RUN npm run build
+
+
+FROM nginx:1.29.1-alpine
+
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./* && apk update && apk add build-base
+
+COPY --from=build-phase ./dist /usr/share/nginx/html
+COPY ./nginx/templates/default.conf.template /etc/nginx/templates/default.conf.template
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+RUN addgroup -S app && adduser -S app -G app && \
+    touch /var/run/nginx.pid && \    
+    chown -R app:app /var/run/nginx.pid && \
+    chown -R app:app /var/cache/nginx && \
+    chown -R app:app /etc/nginx
+
+USER app
+
+EXPOSE 3000
+
+CMD ["nginx","-g","daemon off;"]
